@@ -11,19 +11,22 @@ let uid = 0
  * directives subscribing to it.
  */
 export default class Dep {
+  // 静态属性，watcher对象
   static target: ?Watcher;
+  // dep 实例 id
   id: number;
+  // dep 实例对应的 watcher 对象/订阅者数组
   subs: Array<Watcher>;
 
   constructor () {
     this.id = uid++
     this.subs = []
   }
-
+  // 添加新的订阅者 watcher 对象
   addSub (sub: Watcher) {
     this.subs.push(sub)
   }
-
+  // 移除watcher 对象
   removeSub (sub: Watcher) {
     remove(this.subs, sub)
   }
