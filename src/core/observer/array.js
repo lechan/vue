@@ -37,8 +37,10 @@ methodsToPatch.forEach(function (method) {
         inserted = args.slice(2)
         break
     }
+    // 对插入的新元素，重新遍历数组元素设置为响应式数据
     if (inserted) ob.observeArray(inserted)
     // notify change
+    // 调用了修改数组的方法，调用数组的ob对象发送通知
     ob.dep.notify()
     return result
   })
